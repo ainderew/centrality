@@ -1,0 +1,14 @@
+
+
+
+
+$openMenuAnimation: openMenu 100ms linear forwards;
+
+@keyframes openMenu{
+    0%{
+        transform: translate(-50%, -100%);
+    }
+    100%{
+        transform: translate(-50%, -50%);
+    }
+}

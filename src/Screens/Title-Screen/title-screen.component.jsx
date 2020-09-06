@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import Styles from "./title-screen.module.scss";
 import {useToggle} from "./newGameToggle";
+import newGame from "./newGame";
 
 // COMPONENTS
 import NewGameForm from "../../Components/New-game-form/new-game-form.component";
@@ -15,11 +16,11 @@ import ButtonPress from "../../Assets/music/buttons/buttonPress.mp3";
 
 
 const TitleScreen = () => {
+
   const {NEW_GAME_STATE, toggle} = useToggle(false)
   let backgroundMusic = useRef(null);
   let buttonPress = useRef(null);
 
- 
 
   const playButtonPress = () => {
     buttonPress.play();
@@ -28,7 +29,7 @@ const TitleScreen = () => {
   useEffect(() => {
     backgroundMusic.play();
 
-  });
+  },[]);
 
 
 
@@ -42,19 +43,15 @@ const TitleScreen = () => {
       </audio>
       {/* <embed src={Track1} loop={true} autostart="true" width="2" height="0" /> */}
 
-      {NEW_GAME_STATE ? <NewGameForm  />: null}
+      {NEW_GAME_STATE ? <NewGameForm toggle={toggle}  />: null}
       
 
       <img src={Logo} alt="" className={Styles.logo} />
       <div className={Styles.menuContainer}>
         <button onClick={toggle} onMouseDown={playButtonPress} className={`${Styles.MenuOption}`}>New Game</button>
+        <button onMouseDown={playButtonPress} className={`${Styles.MenuOption}`}>Load Game</button>
+        <button onMouseDown={playButtonPress} className={`${Styles.MenuOption}`}>Options</button>
 
-        <div onMouseDown={playButtonPress} className={`${Styles.MenuOption}`}>
-          Load
-        </div>
-        <div onMouseDown={playButtonPress} className={`${Styles.MenuOption}`}>
-          Options
-        </div>
       </div>
       <span className={Styles.copyright}>&#169; Andrew Pinon 2020</span>
     </div>
